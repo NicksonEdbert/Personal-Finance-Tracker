@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -10,10 +10,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize the database
 db = SQLAlchemy(app)
 
-# Define the Users model based on your Users table
-
 
 class User(db.Model):
+    # Define the Users model based on your Users table
     __tablename__ = 'Users'
     UserID = db.Column(db.Integer, primary_key=True)
     FirstName = db.Column(db.String(50), nullable=False)
@@ -29,23 +28,39 @@ class User(db.Model):
 
 @app.route('/')
 def index():
-    return 'Hello Nickson!'
+    return render_template('index.html')
 
-@app.route('/get-users')
-def getUsers():
+
+@app.route('/get_users')
+def get_users():
     # Query all rows from the Users table
     users = User.query.all()
+    return render_template('get_users.html', users=users)
 
-    # Build a simple HTML response to display the user data
-    html = '<h1>Users Table Data</h1><ul>'
-    for user in users:
-        html += f'<li>{user.UserID} - {user.FirstName} {user.LastName} - {user.Email}</li>'
-    html += '</ul>'
-    return html
 
-# @app.route('/add-user')
-# def addUser():
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    if request.method == 'POST':
+        # Retrieve form data
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Create a new User instance
+        new_user = User(FirstName=first_name, LastName=last_name,
+                        Email=email, Password=password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('get_users'))
+    
+    # For GET request, display the form
+    return render_template('add_user.html')
 
 
 if __name__ == '__main__':
+    # Ensure the tables are created before running the app (run once)
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
