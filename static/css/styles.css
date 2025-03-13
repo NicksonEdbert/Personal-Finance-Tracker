@@ -1,8 +1,46 @@
+/* Reset some default styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-bottom 0.2s ease, color 0.2s ease;
+}
+a:hover {
+    border-bottom: 2px solid #000; /* Subtle underline on hover */
+    /* Optionally, you can slightly change the color on hover */
+    color: #333;
+}
+
 .title {
     text-align: center;
 }
 
-.title a {
-    color: #000000;
+.sidebar {
+    width: 250px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    height: 100vh; /* Full height */
+    position: fixed; /* Fixed position on the left */
+    left: 0;
+    top: 0;
+    overflow-y: auto; /* Scroll if content overflows */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
     text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
 }

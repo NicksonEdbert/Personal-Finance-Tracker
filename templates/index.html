@@ -14,7 +14,12 @@
             </h1>
         </div>
 
-        <a href="{{ url_for('add_user') }}">Add New User</a>
-        <a href="{{ url_for('get_users') }}">List All Users</a>
+        <div class="sidebar">
+            <h2>Queries</h2>
+            <ul>
+                <li><a href="{{ url_for('add_user') }}">Add New User</a></li>
+                <li><a href="{{ url_for('get_users') }}">List All Users</a></li>
+            </ul>
+        </div>
     </body>
 </html>
