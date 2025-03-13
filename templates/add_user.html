@@ -2,8 +2,18 @@
 <html>
     <head>
         <title>Add User</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', filename='css/styles.css')}}" />
     </head>
     <body>
+        <div class="title">
+            <h1>
+                <a href="/">Personal Finance Tracker</a>
+            </h1>
+        </div>
+
         <h1>Add a New User</h1>
         <form method="post" action="{{ url_for('add_user') }}">
             <label for="first_name">First Name:</label>
