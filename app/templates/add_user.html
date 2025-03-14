@@ -15,7 +15,7 @@
         </div>
 
         <h1>Add a New User</h1>
-        <form method="post" action="{{ url_for('add_user') }}">
+        <form method="post" action="{{ url_for('main.add_user') }}">
             <label for="first_name">First Name:</label>
             <input type="text" id="first_name" name="first_name" required />
             <br />
@@ -30,6 +30,6 @@
             <br />
             <button type="submit">Add User</button>
         </form>
-        <a href="{{ url_for('get_users') }}">Back to Users List</a>
+        <a href="{{ url_for('main.get_users') }}">Back to Users List</a>
     </body>
 </html>
