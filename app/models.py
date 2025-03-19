@@ -2,7 +2,7 @@ from . import db
 
 
 class User(db.Model):
-    __tablename__ = 'Users'
+    __tablename__ = 'users'
     UserID = db.Column(db.Integer, primary_key=True)
     FirstName = db.Column(db.String(50), nullable=False)
     LastName = db.Column(db.String(50), nullable=False)
@@ -16,7 +16,7 @@ class User(db.Model):
 
 
 class Transaction(db.Model):
-    __tablename__ = 'Transactions'
+    __tablename__ = 'transactions'
     TransactionID = db.Column(db.Integer, primary_key=True)
     UserID = db.Column(db.Integer, nullable=False)
     CategoryID = db.Column(db.Integer, nullable=False)
@@ -32,7 +32,7 @@ class Transaction(db.Model):
 
 
 class Category(db.Model):
-    __tablename__ = 'Categories'
+    __tablename__ = 'categories'
     CategoryID = db.Column(db.Integer, primary_key=True)
     CategoryName = db.Column(db.String(250), nullable=False)
 
